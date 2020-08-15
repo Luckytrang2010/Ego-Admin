@@ -1013,7 +1013,7 @@ plr.Chatted:Connect(function(msg)
 		end
 		if string.sub(msg:lower(),1,7) == prefix .. 'bchat ' then
 			local original = string.sub(msg,8)
-			local bypass = original:gsub('','أأ')
+			local bypass = original:gsub('','??')
 			remotechat:FireServer(bypass,'All')
 		end
 		if string.sub(msg:lower(),1,6) == prefix .. 'spasm' then
@@ -1760,7 +1760,7 @@ CommandBar.FocusLost:Connect(function(entered)
 		end
 		if string.sub(t:lower(),1,6) == 'bchat ' then
 			local original = string.sub(t,7)
-			local bypass = original:gsub('','أأ')
+			local bypass = original:gsub('','??')
 			remotechat:FireServer(bypass,'All')
 		end
 		if string.sub(t:lower(),1,5) == 'spasm' then
