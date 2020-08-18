@@ -74,6 +74,12 @@
 69 - enable [coreguitype]
 70 - disable [coreguitype]
 71 - viewtools [plr]
+72 - ambientrgb [r] [g] [b]
+73 - disco
+74 - undisco
+75 - reambient
+76 - fog [start] [end]
+77 - fogcolor [r] [g] [b]
 ]]
 
 local plr = game.Players.LocalPlayer
@@ -315,6 +321,9 @@ local savedpos = CFrame.new(0,0,0) --default
 local respawnpos = CFrame.new(0,0,0)
 local gobackflingpos = CFrame.new(0,0,0)
 local slocked = false
+local disco = false
+local defambient = Color3.fromRGB(0,0,0)
+defambient = game.Lighting.Ambient
 
 function change()
 	speedfly = speedfly
@@ -483,6 +492,18 @@ function showcmds()
 	newtext('disable [coreguitype]- disables a specific coregui.',number)
 	number = number + 1
 	newtext('viewtools [plr]- prints out the tools player has in the console.',number)
+	number = number + 1
+	newtext('ambientrgb [r] [g] [b] - (CLIENT) changes the ambient color to rgb args.',number)
+	number = number + 1
+	newtext('disco - (CLIENT) enables disco.',number)
+	number = number + 1
+	newtext('undisco - (CLIENT) disables disco.',number)
+	number = number + 1
+	newtext('reambient - (CLIENT) changes the ambient color back to normal.',number)
+	number = number + 1
+	newtext('fog [start] [end] - (CLIENT) sets the fog start and end to two individual args.',number)
+	number = number + 1
+	newtext('fogcolor [r] [g] [b] - (CLIENT) changes the fog color to rgb args.',number)
 end
 function newchat(name,chat)
 	number = number + 1
@@ -603,6 +624,9 @@ game:GetService('RunService').Stepped:Connect(function()
 		plr.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing,true)
 		plr.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Physics,true)
 		plr.Character.Humanoid:ChangeState(Enum.HumanoidStateType.None)
+	end
+	if disco then
+		game.Lighting.Ambient = Color3.fromRGB(math.random(0,255),math.random(0,255),math.random(0,255))
 	end
 end)
 --buttons
@@ -1013,7 +1037,7 @@ plr.Chatted:Connect(function(msg)
 		end
 		if string.sub(msg:lower(),1,7) == prefix .. 'bchat ' then
 			local original = string.sub(msg,8)
-			local bypass = original:gsub('','??')
+			local bypass = original:gsub('','أأ')
 			remotechat:FireServer(bypass,'All')
 		end
 		if string.sub(msg:lower(),1,6) == prefix .. 'spasm' then
@@ -1179,15 +1203,17 @@ plr.Chatted:Connect(function(msg)
 			newtext('Teleported to saved position!',number)
 		end
 		if string.sub(msg:lower(),1,3) == prefix .. 're' then
-			respawnpos = plr.Character.HumanoidRootPart.CFrame
-			pcall(function()
-				noclip = true
-				plr.Character.Humanoid.Health = 0
-				wait(game.Players.RespawnTime)
-				wait(0.75)
-				noclip = false
-				plr.Character.HumanoidRootPart.CFrame = respawnpos
-			end)
+			if not string.sub(msg:lower(),1,4) == prefix .. 'rea' then
+				respawnpos = plr.Character.HumanoidRootPart.CFrame
+				pcall(function()
+					noclip = true
+					plr.Character.Humanoid.Health = 0
+					wait(game.Players.RespawnTime)
+					wait(0.75)
+					noclip = false
+					plr.Character.HumanoidRootPart.CFrame = respawnpos
+				end)
+			end
 			number = number + 1
 			newtext('Respawned your character!',number)
 		end
@@ -1385,6 +1411,73 @@ plr.Chatted:Connect(function(msg)
 				for ii,vv in pairs(v.Backpack:GetChildren()) do
 					number = number + 1
 					newtext(vv.Name,number)
+				end
+			end
+		end
+		--client sided lighting changes
+		if string.sub(msg:lower(),1,12) == prefix .. 'ambientrgb ' then
+			local args = string.split(string.sub(msg,13),' ')
+			for i,v in pairs(args) do
+				if tonumber(v) >= 0 and tonumber(v) <= 255 then
+					game.Lighting.Ambient = Color3.fromRGB(tonumber(args[1]),tonumber(args[2]),tonumber(args[3]))
+					number = number + 1
+					newtext("[CLIENT SIDED] Changed the ambient's color3: " .. args[1] .. ', ' .. args[2] .. ', ' .. args[3],number)
+					break
+				else
+					number = number + 1
+					newtext("Numbers must be from 0 to 255. (Color3 args)",number)
+					break
+				end
+			end
+		end
+		if string.sub(msg:lower(),1,6) == msg .. 'disco' then
+			if not disco then
+				disco = true
+				number = number + 1
+				newtext("[CLIENT SIDED] Turned on disco. :D",number)
+			else
+				number = number + 1
+				newtext("Disco's already on...",number)
+			end
+		end
+		if string.sub(msg:lower(),1,8) == prefix .. 'undisco' then
+			if disco then
+				disco = false
+				game.Lighting.Ambient = defambient
+				number = number + 1
+				newtext("[CLIENT SIDED] Turned off disco.. :(",number)
+			else
+				number = number + 1
+				newtext("Disco's already off...",number)
+			end
+		end
+		if string.sub(msg:lower(),1,10) == prefix .. 'reambient' then
+			if disco then
+				number = number + 1
+				newtext("Can't restore ambient color due to disco.",number)
+			else
+				game.Lighting.Ambient = defambient
+				number = number + 1
+				newtext("[CLIENT SIDED] Restored ambient color!",number)
+			end
+		end
+		if string.sub(msg:lower(),1,5) == prefix .. 'fog ' then
+			local args = string.split(string.sub(msg,6),' ')
+			game.Lighting.FogStart = tonumber(args[1])
+			game.Lighting.FogEnd = tonumber(args[2])
+		end
+		if string.sub(msg:lower(),1,10) == prefix .. 'fogcolor ' then
+			local args = string.split(string.sub(msg,11),' ')
+			for i,v in pairs(args) do
+				if tonumber(v) >= 0 and tonumber(v) <= 255 then
+					game.Lighting.FogColor = Color3.fromRGB(tonumber(args[1]),tonumber(args[2]),tonumber(args[3]))
+					number = number + 1
+					newtext("Changed the fog color: " .. args[1] .. ', ' .. args[2] .. ', ' .. args[3],number)
+					break
+				else
+					number = number + 1
+					newtext("Numbers must be from 0 to 255. (Color3 args)",number)
+					break
 				end
 			end
 		end
@@ -1760,7 +1853,7 @@ CommandBar.FocusLost:Connect(function(entered)
 		end
 		if string.sub(t:lower(),1,6) == 'bchat ' then
 			local original = string.sub(t,7)
-			local bypass = original:gsub('','??')
+			local bypass = original:gsub('','أأ')
 			remotechat:FireServer(bypass,'All')
 		end
 		if string.sub(t:lower(),1,5) == 'spasm' then
@@ -1926,15 +2019,17 @@ CommandBar.FocusLost:Connect(function(entered)
 			newtext('Teleported to saved position!',number)
 		end
 		if string.sub(t:lower(),1,2) == 're' then
-			respawnpos = plr.Character.HumanoidRootPart.CFrame
-			pcall(function()
-				noclip = true
-				plr.Character.Humanoid.Health = 0
-				wait(game.Players.RespawnTime)
-				wait(0.75)
-				noclip = false
-				plr.Character.HumanoidRootPart.CFrame = respawnpos
-			end)
+			if not string.sub(t:lower(),1,3) == 'rea' then
+				respawnpos = plr.Character.HumanoidRootPart.CFrame
+				pcall(function()
+					noclip = true
+					plr.Character.Humanoid.Health = 0
+					wait(game.Players.RespawnTime)
+					wait(0.75)
+					noclip = false
+					plr.Character.HumanoidRootPart.CFrame = respawnpos
+				end)
+			end
 			number = number + 1
 			newtext('Respawned your character!',number)
 		end
@@ -2133,6 +2228,73 @@ CommandBar.FocusLost:Connect(function(entered)
 				for ii,vv in pairs(v.Backpack:GetChildren()) do
 					number = number + 1
 					newtext(vv.Name,number)
+				end
+			end
+		end
+		--client sided lighting changes
+		if string.sub(t:lower(),1,11) == 'ambientrgb ' then
+			local args = string.split(string.sub(t,12),' ')
+			for i,v in pairs(args) do
+				if tonumber(v) >= 0 and tonumber(v) <= 255 then
+					game.Lighting.Ambient = Color3.fromRGB(tonumber(args[1]),tonumber(args[2]),tonumber(args[3]))
+					number = number + 1
+					newtext("[CLIENT SIDED] Changed the ambient's color3: " .. args[1] .. ', ' .. args[2] .. ', ' .. args[3],number)
+					break
+				else
+					number = number + 1
+					newtext("Numbers must be from 0 to 255. (Color3 args)",number)
+					break
+				end
+			end
+		end
+		if string.sub(t:lower(),1,5) == 'disco' then
+			if not disco then
+				disco = true
+				number = number + 1
+				newtext("[CLIENT SIDED] Turned on disco. :D",number)
+			else
+				number = number + 1
+				newtext("Disco's already on...",number)
+			end
+		end
+		if string.sub(t:lower(),1,7) == 'undisco' then
+			if disco then
+				disco = false
+				game.Lighting.Ambient = defambient
+				number = number + 1
+				newtext("[CLIENT SIDED] Turned off disco.. :(",number)
+			else
+				number = number + 1
+				newtext("Disco's already off...",number)
+			end
+		end
+		if string.sub(t:lower(),1,9) == 'reambient' then
+			if disco then
+				number = number + 1
+				newtext("Can't restore ambient color due to disco.",number)
+			else
+				game.Lighting.Ambient = defambient
+				number = number + 1
+				newtext("[CLIENT SIDED] Restored ambient color!",number)
+			end
+		end
+		if string.sub(t:lower(),1,4) == 'fog ' then
+			local args = string.split(string.sub(t,5),' ')
+			game.Lighting.FogStart = tonumber(args[1])
+			game.Lighting.FogEnd = tonumber(args[2])
+		end
+		if string.sub(t:lower(),1,9) == 'fogcolor ' then
+			local args = string.split(string.sub(t,10),' ')
+			for i,v in pairs(args) do
+				if tonumber(v) >= 0 and tonumber(v) <= 255 then
+					game.Lighting.FogColor = Color3.fromRGB(tonumber(args[1]),tonumber(args[2]),tonumber(args[3]))
+					number = number + 1
+					newtext("Changed the fog color: " .. args[1] .. ', ' .. args[2] .. ', ' .. args[3],number)
+					break
+				else
+					number = number + 1
+					newtext("Numbers must be from 0 to 255. (Color3 args)",number)
+					break
 				end
 			end
 		end
