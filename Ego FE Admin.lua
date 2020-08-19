@@ -80,6 +80,8 @@
 75 - reambient
 76 - fog [start] [end]
 77 - fogcolor [r] [g] [b]
+78 - antimute
+79 - unantimute
 ]]
 
 local plr = game.Players.LocalPlayer
@@ -324,6 +326,7 @@ local slocked = false
 local disco = false
 local defambient = Color3.fromRGB(0,0,0)
 defambient = game.Lighting.Ambient
+local antimute = false
 
 function change()
 	speedfly = speedfly
@@ -504,6 +507,10 @@ function showcmds()
 	newtext('fog [start] [end] - (CLIENT) sets the fog start and end to two individual args.',number)
 	number = number + 1
 	newtext('fogcolor [r] [g] [b] - (CLIENT) changes the fog color to rgb args.',number)
+	number = number + 1
+	newtext('antimute - spam enables chat.',number)
+	number = number + 1
+	newtext('unantimute - stops spam enabling chat.',number)
 end
 function newchat(name,chat)
 	number = number + 1
@@ -627,6 +634,9 @@ game:GetService('RunService').Stepped:Connect(function()
 	end
 	if disco then
 		game.Lighting.Ambient = Color3.fromRGB(math.random(0,255),math.random(0,255),math.random(0,255))
+	end
+	if antimute then
+		game.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true)
 	end
 end)
 --buttons
@@ -1481,6 +1491,12 @@ plr.Chatted:Connect(function(msg)
 				end
 			end
 		end
+		if string.sub(msg:lower(),1,9) == prefix .. 'antimute' then
+			antimute = true
+		end
+		if string.sub(msg:lower(),1,11) == prefix .. 'unantimute' then
+			antimute = false
+		end
 	end
 end)
 
@@ -2297,6 +2313,12 @@ CommandBar.FocusLost:Connect(function(entered)
 					break
 				end
 			end
+		end
+		if string.sub(t:lower(),1,8) == 'antimute' then
+			antimute = true
+		end
+		if string.sub(t:lower(),1,10) == 'unantimute' then
+			antimute = false
 		end
 	end
 end)
