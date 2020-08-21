@@ -1374,7 +1374,7 @@ plr.Chatted:Connect(function(msg)
             if game.PlaceId == 1021229926 then
                 slock = true
                 number = number + 1
-                newtext("Serverlocked the server in Bloxwatch HQ! :D")
+                newtext("Serverlocked the server in Bloxwatch HQ! :D",number)
                 game.Players.PlayerAdded:Connect(function(plr)
                     if game.PlaceId == 1021229926 then
                         if slock then
