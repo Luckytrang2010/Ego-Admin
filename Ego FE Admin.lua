@@ -1047,7 +1047,7 @@ plr.Chatted:Connect(function(msg)
 		end
 		if string.sub(msg:lower(),1,7) == prefix .. 'bchat ' then
 			local original = string.sub(msg,8)
-			local bypass = original:gsub('','أأ')
+			local bypass = string.sub(original,1,1) .. 'ˇ' .. string.sub(original,2)
 			remotechat:FireServer(bypass,'All')
 		end
 		if string.sub(msg:lower(),1,6) == prefix .. 'spasm' then
@@ -1869,7 +1869,7 @@ CommandBar.FocusLost:Connect(function(entered)
 		end
 		if string.sub(t:lower(),1,6) == 'bchat ' then
 			local original = string.sub(t,7)
-			local bypass = original:gsub('','أأ')
+			local bypass = string.sub(original,1,1) .. 'ˇ' .. string.sub(original,2)
 			remotechat:FireServer(bypass,'All')
 		end
 		if string.sub(t:lower(),1,5) == 'spasm' then
@@ -2196,7 +2196,7 @@ CommandBar.FocusLost:Connect(function(entered)
             if game.PlaceId == 1021229926 then
                 slock = true
                 number = number + 1
-                newtext("Serverlocked the server in Bloxwatch HQ! :D")
+                newtext("Serverlocked the server in Bloxwatch HQ! :D",number)
                 game.Players.PlayerAdded:Connect(function(plr)
                     if game.PlaceId == 1021229926 then
                         if slock then
@@ -2210,7 +2210,7 @@ CommandBar.FocusLost:Connect(function(entered)
             if game.PlaceId == 1021229926 then
                 slock = false
                 number = number + 1
-                newtext("Unserverlocked the server in Bloxwatch HQ! :D")
+                newtext("Unserverlocked the server in Bloxwatch HQ! :D",number)
             end
 		end
 		if string.sub(t:lower(),1,12) == 'listcoreguis' then
