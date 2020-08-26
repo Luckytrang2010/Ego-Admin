@@ -1213,17 +1213,13 @@ plr.Chatted:Connect(function(msg)
 			newtext('Teleported to saved position!',number)
 		end
 		if string.sub(msg:lower(),1,3) == prefix .. 're' then
-			if not string.sub(msg:lower(),1,4) == prefix .. 'rea' then
-				respawnpos = plr.Character.HumanoidRootPart.CFrame
-				pcall(function()
-					noclip = true
-					plr.Character.Humanoid.Health = 0
-					wait(game.Players.RespawnTime)
-					wait(0.75)
-					noclip = false
-					plr.Character.HumanoidRootPart.CFrame = respawnpos
-				end)
-			end
+			respawnpos = plr.Character.HumanoidRootPart.CFrame
+			noclip = true
+			plr.Character.Humanoid.Health = 0
+			wait(game.Players.RespawnTime)
+			wait(0.75)
+			noclip = false
+			plr.Character.HumanoidRootPart.CFrame = respawnpos
 			number = number + 1
 			newtext('Respawned your character!',number)
 		end
@@ -2035,17 +2031,13 @@ CommandBar.FocusLost:Connect(function(entered)
 			newtext('Teleported to saved position!',number)
 		end
 		if string.sub(t:lower(),1,2) == 're' then
-			if not string.sub(t:lower(),1,3) == 'rea' then
-				respawnpos = plr.Character.HumanoidRootPart.CFrame
-				pcall(function()
-					noclip = true
-					plr.Character.Humanoid.Health = 0
-					wait(game.Players.RespawnTime)
-					wait(0.75)
-					noclip = false
-					plr.Character.HumanoidRootPart.CFrame = respawnpos
-				end)
-			end
+			respawnpos = plr.Character.HumanoidRootPart.CFrame
+			noclip = true
+			plr.Character.Humanoid.Health = 0
+			wait(game.Players.RespawnTime)
+			wait(0.75)
+			noclip = false
+			plr.Character.HumanoidRootPart.CFrame = respawnpos
 			number = number + 1
 			newtext('Respawned your character!',number)
 		end
