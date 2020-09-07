@@ -1219,11 +1219,12 @@ plr.Chatted:Connect(function(msg)
 		end
 		if string.sub(msg:lower(),1,6) == prefix .. 'clear' then
 			for i,v in pairs(Scroll:GetChildren()) do
-				v:Remove()
-				number = 1
-				y = 1
-				Scroll.CanvasSize = UDim2.new(0,0,0,0)
-				chatlogs = false
+				if v ~= Input or v ~= Box then
+					number = 1
+					y = 1
+					Scroll.CanvasSize = UDim2.new(0,0,0,0)
+					chatlogs = false
+				end			
 			end
 		end
 		if string.sub(msg:lower(),1,9) == prefix .. 'chatlogs' then
