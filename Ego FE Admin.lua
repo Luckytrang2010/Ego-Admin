@@ -1220,7 +1220,7 @@ plr.Chatted:Connect(function(msg)
 		end
 		if string.sub(msg:lower(),1,6) == prefix .. 'clear' then
 			for i,v in pairs(Scroll:GetChildren()) do
-				if v ~= Input or v ~= Box then
+				if v:IsA("TextLabel") and v.Text ~= Input.Text then
 					v:Destroy()
 					number = 1
 					y = 1
@@ -2041,7 +2041,7 @@ Box.FocusLost:Connect(function(entered)
 		end
 		if string.sub(t:lower(),1,5) == 'clear' then
 			for i,v in pairs(Scroll:GetChildren()) do
-				if v ~= Input or v ~= Box then
+				if v:IsA("TextLabel") and v.Text ~= Input.Text then
 					v:Destroy()
 					number = 1
 					y = 1
