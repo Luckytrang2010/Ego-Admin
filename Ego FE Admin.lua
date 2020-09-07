@@ -547,6 +547,7 @@ function newchat(name,chat)
 	newtext('[' .. name .. ']: ' .. chat,number)
 end
 Discord.MouseButton1Click:Connect(function()
+	number = number + 1
 	newtext("Discord Invite: https://discord.gg/ra3psDT",number)
 end)
 
@@ -1225,6 +1226,7 @@ plr.Chatted:Connect(function(msg)
 					y = 1
 					Scroll.CanvasSize = UDim2.new(0,0,0,0)
 					chatlogs = false
+					Input.Position = UDim2.new(0, 0, 0.0580645166, 0)
 				end			
 			end
 		end
@@ -2045,6 +2047,7 @@ Box.FocusLost:Connect(function(entered)
 					y = 1
 					Scroll.CanvasSize = UDim2.new(0,0,0,0)
 					chatlogs = false
+					Input.Position = UDim2.new(0, 0, 0.0580645166, 0)
 				end
 			end
 		end
