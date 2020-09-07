@@ -1220,6 +1220,7 @@ plr.Chatted:Connect(function(msg)
 		if string.sub(msg:lower(),1,6) == prefix .. 'clear' then
 			for i,v in pairs(Scroll:GetChildren()) do
 				if v ~= Input or v ~= Box then
+					v:Destroy()
 					number = 1
 					y = 1
 					Scroll.CanvasSize = UDim2.new(0,0,0,0)
@@ -2039,6 +2040,7 @@ Box.FocusLost:Connect(function(entered)
 		if string.sub(t:lower(),1,5) == 'clear' then
 			for i,v in pairs(Scroll:GetChildren()) do
 				if v ~= Input or v ~= Box then
+					v:Destroy()
 					number = 1
 					y = 1
 					Scroll.CanvasSize = UDim2.new(0,0,0,0)
