@@ -1,301 +1,332 @@
---USE SYNAPSE FOR BEST EXPERIENCE!!
---Made by Luckytrang2010 / Tangly#9688
---Inspired by Sinuris / Sinuris#3827
---Credits to IY for some part in this script (No seriously, I didn't look in IY source, this is to prevent people complaining about me skidding off IY)
---[[
-1 - cmds/help
-2 - noclip
-3 - clip
-4 - fov [num]
-5 - country [plr]
-6 - age [plr]
-7 - os [plr]
-8 - spoofos [string]
-9 - chat [string]
-10 - spam [string]
-11 - spamwait [num] < ONLY AVAILABLE WHEN SPAM IS ON!
-12 - unspam
-13 - dance
-14 - undance
-15 - glitchaudio
-16 - unglitchaudio
-17 - findallaudio/detectaudio
-18 - random [num] [num] < min to max
-19 - fly
-20 - flyspeed [num] < ONLY AVAILABLE WHEN FLY IS ON!
-21 - unfly
-22 - walkspeed/speed/ws [num]
-23 - jumppower/jp [num]
-24 - antisit
-25 - unantisit
-26 - antikick
-27 - antiafk
-28 - unantiafk
-29 - 8ball [string]
-30 - gay [plr]
-31 - lesbian [plr]
-32 - ad/advertise
-33 - devad/devadvertise
-34 - noclothes/rclothes
-35 - noface/rface
-36 - nohats/rhats
-37 - drophats
-38 - findall [object]
-39 - bchat [string]
-40 - spasm
-41 - unspasm
-42 - prefix [string]
-43 - to [plr]
-44 - view [plr]
-45 - unview
-46 - fling [plr]
-47 - bang [plr]
-48 - bangspeed/bspeed [num]
-49 - unbang
-50 - savepos
-51 - loadpos
-52 - re
-53 - rj
-54 - info/serverinfo/sinfo
-55 - clear
-56 - chatlogs
-57 - swim
-58 - unswim
-59 - infodump
-60 - blockhats
-61 - floathat [number]
-62 - unfloathat
-63 - tpparts [plr]
-64 - ban [plr] -BLOXWATCH HQ
-65 - kick [plr] -BLOXWATCH HQ
-66 - slock/serverlock -BLOXWATCH HQ
-67 - unslock/unserverlock -BLOXWATCH HQ
-68 - listcoreguis
-69 - enable [coreguitype]
-70 - disable [coreguitype]
-71 - viewtools [plr]
-72 - ambientrgb [r] [g] [b]
-73 - disco
-74 - undisco
-75 - reambient
-76 - fog [start] [end]
-77 - fogcolor [r] [g] [b]
-78 - antimute
-79 - unantimute
-]]
-
+--Made by 4Bytes#9688 aka Luckytrang2010/Tangly
+--Inspired by Sinuris
+--Since yall think I skidded from IY, credits for IY
 local plr = game.Players.LocalPlayer
 local Ego = Instance.new("ScreenGui")
-local EgoAdmin = Instance.new('StringValue')
-local Main = Instance.new("Frame")
+local Frame = Instance.new("Frame")
+local ok = Instance.new("UICorner")
+ok.Parent = Frame
+ok.CornerRadius = UDim.new(0,5)
 local TopBar = Instance.new("Frame")
+local ok1 = Instance.new("UICorner")
+ok1.Parent = TopBar
+ok1.CornerRadius = UDim.new(0,5)
 local Bar = Instance.new("Frame")
-local Help = Instance.new("TextButton")
-local Credit = Instance.new("TextButton")
-local Welcome = Instance.new("TextLabel")
-local Clear = Instance.new("TextButton")
-local Close = Instance.new("TextButton")
+local Discord = Instance.new("TextButton")
+local Exit = Instance.new("TextButton")
+local ok2 = Instance.new("UICorner")
+ok2.Parent = Exit
+ok2.CornerRadius = UDim.new(0,2147483647)
+local Maximize = Instance.new("TextButton")
+local ok3 = Instance.new("UICorner")
+ok3.Parent = Maximize
+ok3.CornerRadius = UDim.new(0,2147483647)
 local Mininize = Instance.new("TextButton")
-local Icon = Instance.new("ImageButton")
+local ok4 = Instance.new("UICorner")
+ok4.Parent = Mininize
+ok4.CornerRadius = UDim.new(0,2147483647)
 local Title = Instance.new("TextLabel")
-local CommandBar = Instance.new("TextBox")
-local Output = Instance.new("ScrollingFrame")
-local TextLabel = Instance.new("TextLabel")
-local Credit_2 = Instance.new("TextLabel")
+local Terminal = Instance.new("Frame")
+local Scroll = Instance.new("ScrollingFrame")
+local Input = Instance.new("TextLabel")
+local Box = Instance.new("TextBox")
+local Welcome = Instance.new("TextLabel")
+local Intro = Instance.new("Frame")
+local ok5 = Instance.new("UICorner")
+ok5.Parent = Intro
+ok5.CornerRadius = UDim.new(0,5)
+local Welcome_2 = Instance.new("TextLabel")
+local Loading = Instance.new("TextLabel")
+local Cover = Instance.new("Frame")
+local Cover1 = Instance.new("Frame")
+--mininized
+local hi = Instance.new("Frame")
+hi.Parent = Ego
+hi.Position = UDim2.new(0.088,0,-0.3,0) -- -0.063
+hi.Size = UDim2.new(0.216,0,0.108,0)
+hi.BackgroundColor3 = Color3.fromRGB(55,83,97)
+hi.BorderSizePixel = 0
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0,16)
+corner.Parent = hi
+local okk = Instance.new('TextButton')
+okk.Parent = hi
+okk.BackgroundTransparency = 1
+okk.TextScaled = true
+okk.TextColor3 = Color3.fromRGB(255,255,255)
+okk.Font = Enum.Font.Code
+okk.Position = UDim2.new(0,0,0.59,0)
+okk.Size = UDim2.new(1,0,0.41,0)
+okk.Text = "Ego Admin"
 
 Ego.Name = "Ego"
 Ego.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 Ego.DisplayOrder = 999999999
 Ego.ResetOnSpawn = false
 
-EgoAdmin.Name = "EgoAdmin"
-EgoAdmin.Value = "This is Ego Admin"
-
-Main.Name = "Main"
-Main.Parent = Ego
-Main.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-Main.BorderSizePixel = 0
-Main.ClipsDescendants = true
-Main.Position = UDim2.new(0.0158343483, 0, 0.0220994484, 0)
-Main.Size = UDim2.new(0, 600, 0, 350)
-Main.Active = true
-Main.Draggable = true
+Frame.Parent = Ego
+Frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BackgroundTransparency = 0.150
+Frame.BorderSizePixel = 0
+Frame.ClipsDescendants = true
+Frame.Position = UDim2.new(0.0267965887, 0, 0.0441988967, 0)
+Frame.Size = UDim2.new(0, 550, 0, 350)
+Frame.Visible = false
 
 TopBar.Name = "TopBar"
-TopBar.Parent = Main
-TopBar.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+TopBar.Parent = Frame
+TopBar.BackgroundColor3 = Color3.fromRGB(55, 83, 97)
 TopBar.BorderSizePixel = 0
-TopBar.Size = UDim2.new(1, 0, 0.0285714287, 20)
-TopBar.ZIndex = 2
+TopBar.Size = UDim2.new(1, 0, 0, 40)
 
 Bar.Name = "Bar"
 Bar.Parent = TopBar
-Bar.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-Bar.BorderColor3 = Color3.fromRGB(45, 45, 45)
-Bar.Position = UDim2.new(0, 0, 0.300000012, 0)
-Bar.Size = UDim2.new(1, 0, 0.666666687, 0)
+Bar.BackgroundColor3 = Color3.fromRGB(55, 83, 97)
+Bar.BorderSizePixel = 0
+Bar.Position = UDim2.new(0, 0, 0.5, 0)
+Bar.Size = UDim2.new(1, 0, 0.5, 0)
 
-Help.Name = "Help"
-Help.Parent = Bar
-Help.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-Help.BorderSizePixel = 0
-Help.Position = UDim2.new(0.00327796675, 0, 0.0741878524, 0)
-Help.Size = UDim2.new(0.0579616241, 0, 0.825812161, 0)
-Help.Font = Enum.Font.Code
-Help.Text = "Help"
-Help.TextColor3 = Color3.fromRGB(255, 255, 255)
-Help.TextScaled = true
-Help.TextSize = 12.000
-Help.TextWrapped = true
+Discord.Name = "Discord"
+Discord.Parent = Bar
+Discord.BackgroundColor3 = Color3.fromRGB(55, 83, 97)
+Discord.BorderSizePixel = 0
+Discord.Position = UDim2.new(0, 0, 0.300000012, 0)
+Discord.Size = UDim2.new(0.0599999987, 0, 0.699999988, 0)
+Discord.Font = Enum.Font.SourceSans
+Discord.Text = "Discord"
+Discord.TextColor3 = Color3.fromRGB(230, 230, 230)
+Discord.TextScaled = true
+Discord.TextSize = 14.000
+Discord.TextWrapped = true
 
-Credit.Name = "Credit"
-Credit.Parent = Bar
-Credit.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-Credit.BorderSizePixel = 0
-Credit.Position = UDim2.new(0.0613391586, 0, 0.0855001509, 0)
-Credit.Size = UDim2.new(0.0770504177, 0, 0.816737533, 0)
-Credit.Font = Enum.Font.Code
-Credit.Text = "Credits"
-Credit.TextColor3 = Color3.fromRGB(255, 255, 255)
-Credit.TextScaled = true
-Credit.TextSize = 12.000
-Credit.TextWrapped = true
+Exit.Name = "Exit"
+Exit.Parent = TopBar
+Exit.BackgroundColor3 = Color3.fromRGB(255, 30, 1)
+Exit.Position = UDim2.new(0.0181818195, 0, 0.150000006, 0)
+Exit.Size = UDim2.new(0.0254545454, 0, 0.349999994, 0)
+Exit.Font = Enum.Font.SourceSans
+Exit.Text = ""
+Exit.TextColor3 = Color3.fromRGB(0, 0, 0)
+Exit.TextSize = 14.000
 
-Welcome.Name = "Welcome"
-Welcome.Parent = Bar
-Welcome.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Welcome.BackgroundTransparency = 1.000
-Welcome.BorderSizePixel = 0
-Welcome.Position = UDim2.new(0.705563843, 0, 0, 0)
-Welcome.Size = UDim2.new(0.289452702, 0, 0.905000031, 0)
-Welcome.Font = Enum.Font.Code
-Welcome.Text = "Welcome, " .. plr.Name .. "!"
-Welcome.TextColor3 = Color3.fromRGB(255, 255, 255)
-Welcome.TextScaled = true
-Welcome.TextSize = 14.000
-Welcome.TextWrapped = true
-Welcome.TextXAlignment = Enum.TextXAlignment.Right
-
-Clear.Name = "Clear"
-Clear.Parent = Bar
-Clear.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-Clear.BorderSizePixel = 0
-Clear.Position = UDim2.new(0.139212474, 0, 0.12695007, 0)
-Clear.Size = UDim2.new(0.0667935833, 0, 0.735063851, 0)
-Clear.Font = Enum.Font.Code
-Clear.Text = "Clear"
-Clear.TextColor3 = Color3.fromRGB(255, 255, 255)
-Clear.TextScaled = true
-Clear.TextSize = 12.000
-Clear.TextWrapped = true
-
-Close.Name = "Close"
-Close.Parent = TopBar
-Close.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-Close.BorderSizePixel = 0
-Close.Position = UDim2.new(0.915757537, 0, 0, 0)
-Close.Size = UDim2.new(0.0842424259, 0, 1, 0)
-Close.ZIndex = 2
-Close.AutoButtonColor = false
-Close.Font = Enum.Font.Cartoon
-Close.Text = "X"
-Close.TextColor3 = Color3.fromRGB(255, 255, 255)
-Close.TextScaled = true
-Close.TextSize = 14.000
-Close.TextWrapped = true
+Maximize.Name = "Maximize"
+Maximize.Parent = TopBar
+Maximize.BackgroundColor3 = Color3.fromRGB(0, 255, 93)
+Maximize.Position = UDim2.new(0.0600000024, 0, 0.150000006, 0)
+Maximize.Size = UDim2.new(0.0254545454, 0, 0.349999994, 0)
+Maximize.Font = Enum.Font.SourceSans
+Maximize.Text = ""
+Maximize.TextColor3 = Color3.fromRGB(0, 0, 0)
+Maximize.TextSize = 14.000
+local max = false
+Maximize.MouseButton1Click:Connect(function()
+	if not max then
+		Frame.Position = UDim2.new(0,0,0,0)
+		Frame.Size = UDim2.new(1,0,1,0)
+		max = true
+	else
+		Frame.Position = UDim2.new(0.027, 0,0.044, 0)
+		Frame.Size = UDim2.new(0,550,0,350)
+		max = false
+	end
+end)
 
 Mininize.Name = "Mininize"
 Mininize.Parent = TopBar
-Mininize.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-Mininize.BorderSizePixel = 0
-Mininize.Position = UDim2.new(0.831666589, 0, 0, 0)
-Mininize.Size = UDim2.new(0.0840908661, 0, 1, 0)
-Mininize.ZIndex = 2
-Mininize.AutoButtonColor = false
-Mininize.Font = Enum.Font.Cartoon
-Mininize.Text = "_"
-Mininize.TextColor3 = Color3.fromRGB(255, 255, 255)
-Mininize.TextScaled = true
+Mininize.BackgroundColor3 = Color3.fromRGB(255, 255, 0)
+Mininize.Position = UDim2.new(0.101818189, 0, 0.150000006, 0)
+Mininize.Size = UDim2.new(0.0254545454, 0, 0.349999994, 0)
+Mininize.Font = Enum.Font.SourceSans
+Mininize.Text = ""
+Mininize.TextColor3 = Color3.fromRGB(0, 0, 0)
 Mininize.TextSize = 14.000
-Mininize.TextWrapped = true
-
-Icon.Name = "Icon"
-Icon.Parent = TopBar
-Icon.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-Icon.BorderSizePixel = 0
-Icon.Size = UDim2.new(0.0500000007, 0, 1, 0)
-Icon.ZIndex = 2
-Icon.Image = "rbxassetid://4283512246"
-Icon.ScaleType = Enum.ScaleType.Fit
+local min = false
+Mininize.MouseButton1Click:Connect(function()
+	if not min then
+		Frame.Visible = false
+		hi:TweenPosition(UDim2.new(0.088,0,-0.063,0),Enum.EasingDirection.InOut,Enum.EasingStyle.Quad,.5)
+		min = true
+	end
+end)
+okk.MouseButton1Click:Connect(function()
+	if min then
+		Frame.Visible = true
+		hi:TweenPosition(UDim2.new(0.088,0,-0.3,0),Enum.EasingDirection.InOut,Enum.EasingStyle.Quad,.5)
+		min = false
+	end
+end)
 
 Title.Name = "Title"
 Title.Parent = TopBar
 Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Title.BackgroundTransparency = 1.000
 Title.BorderSizePixel = 0
-Title.Position = UDim2.new(0.0633333325, 0, 0.200000003, 0)
-Title.Size = UDim2.new(0.321666658, 0, 0.600000024, 0)
-Title.ZIndex = 2
+Title.Position = UDim2.new(0.152727276, 0, 0.075000003, 0)
+Title.Size = UDim2.new(0.661818206, 0, 0.5, 0)
 Title.Font = Enum.Font.Code
-Title.Text = "Ego Admin"
+Title.Text = "Ego Admin (Terminal)"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextScaled = true
 Title.TextSize = 14.000
-Title.TextXAlignment = Enum.TextXAlignment.Left
+Title.TextWrapped = true
 
-CommandBar.Name = "CommandBar"
-CommandBar.Parent = Main
-CommandBar.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-CommandBar.BorderSizePixel = 0
-CommandBar.Position = UDim2.new(0.0283333343, 0, 0.845714271, 0)
-CommandBar.Size = UDim2.new(0.941666663, 0, 0, 20)
-CommandBar.Font = Enum.Font.Code
-CommandBar.PlaceholderColor3 = Color3.fromRGB(88, 88, 88)
-CommandBar.PlaceholderText = "Command here"
-CommandBar.Text = ""
-CommandBar.TextColor3 = Color3.fromRGB(255, 255, 255)
-CommandBar.TextScaled = true
-CommandBar.TextSize = 14.000
-CommandBar.TextWrapped = true
-CommandBar.TextXAlignment = Enum.TextXAlignment.Left
+Terminal.Name = "Terminal"
+Terminal.Parent = Frame
+Terminal.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Terminal.BackgroundTransparency = 1.000
+Terminal.BorderSizePixel = 0
+Terminal.Position = UDim2.new(0, 0, 0.114285715, 0)
+Terminal.Size = UDim2.new(1, 0, 0.885714293, 0)
 
-Output.Name = "Output"
-Output.Parent = Main
-Output.Active = true
-Output.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-Output.BorderSizePixel = 0
-Output.Position = UDim2.new(0.0283333343, 0, 0.137142882, 0)
-Output.Size = UDim2.new(0.941666663, 0, 0.708571374, 0)
-Output.CanvasSize = UDim2.new(0, 0, 0, 0)
-Output.ScrollBarThickness = 5
+Scroll.Name = "Scroll"
+Scroll.Parent = Terminal
+Scroll.Active = true
+Scroll.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Scroll.BackgroundTransparency = 1.000
+Scroll.BorderSizePixel = 0
+Scroll.Size = UDim2.new(1, 0, 1, 0)
+Scroll.CanvasSize = UDim2.new(0, 0, 0, 0)
 
-TextLabel.Parent = Output
-TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.BackgroundTransparency = 1.000
-TextLabel.BorderSizePixel = 0
-TextLabel.Size = UDim2.new(1, 0, 0, 17)
-TextLabel.Font = Enum.Font.Code
-TextLabel.Text = "Welcome to Ego Admin!"
-TextLabel.TextColor3 = Color3.fromRGB(255, 0, 150)
-TextLabel.TextScaled = true
-TextLabel.TextSize = 14.000
-TextLabel.TextWrapped = true
-TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+Input.Name = "Input"
+Input.Parent = Scroll
+Input.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Input.BackgroundTransparency = 1.000
+Input.BorderSizePixel = 0
+Input.Position = UDim2.new(0, 0, 0.0580645166, 0)
+Input.Size = UDim2.new(1, 0, 0,18)
+Input.Font = Enum.Font.Code
+Input.Text = "root@user:~$ "
+Input.TextColor3 = Color3.fromRGB(0, 255, 0)
+Input.TextScaled = true
+Input.TextSize = 14.000
+Input.TextWrapped = true
+Input.TextXAlignment = Enum.TextXAlignment.Left
+Input.TextYAlignment = Enum.TextYAlignment.Top
 
-Credit_2.Name = "Credit"
-Credit_2.Parent = Main
-Credit_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Credit_2.BackgroundTransparency = 1.000
-Credit_2.BorderSizePixel = 0
-Credit_2.Position = UDim2.new(0, 0, 0.951428592, 0)
-Credit_2.Size = UDim2.new(1, 0, 0.0485714301, 0)
-Credit_2.Font = Enum.Font.SourceSansLight
-Credit_2.Text = "Remade by Luckytrang2010 <3"
-Credit_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-Credit_2.TextScaled = true
-Credit_2.TextSize = 14.000
-Credit_2.TextWrapped = true
+Box.Name = "Box"
+Box.Parent = Input
+Box.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Box.BackgroundTransparency = 1.000
+Box.BorderSizePixel = 0
+Box.Position = UDim2.new(0.214545459, 0, 0, 0)
+Box.Size = UDim2.new(0.785454571, 0, 1, 0)
+Box.ClearTextOnFocus = false
+Box.Font = Enum.Font.Code
+Box.PlaceholderColor3 = Color3.fromRGB(0, 255, 0)
+Box.Text = ""
+Box.TextColor3 = Color3.fromRGB(0, 255, 0)
+Box.TextScaled = true
+Box.TextSize = 14.000
+Box.TextWrapped = true
+Box.TextXAlignment = Enum.TextXAlignment.Left
+Box.TextYAlignment = Enum.TextYAlignment.Top
 
---plr.OsPlatform = 'Ego'
+Welcome.Name = "Welcome"
+Welcome.Parent = Scroll
+Welcome.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Welcome.BackgroundTransparency = 1.000
+Welcome.BorderSizePixel = 0
+Welcome.Size = UDim2.new(1, 0, 0,18)
+Welcome.Font = Enum.Font.Code
+Welcome.Text = "Welcome to Ego Admin!"
+Welcome.TextColor3 = Color3.fromRGB(0, 255, 0)
+Welcome.TextScaled = true
+Welcome.TextSize = 14.000
+Welcome.TextWrapped = true
+Welcome.TextXAlignment = Enum.TextXAlignment.Left
+Welcome.TextYAlignment = Enum.TextYAlignment.Top
+
+Intro.Name = "Intro"
+Intro.Parent = Ego
+Intro.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+Intro.BorderSizePixel = 0
+Intro.ClipsDescendants = true
+Intro.Position = UDim2.new(0.0410418324, 0, 0.431203932, 0)
+Intro.Size = UDim2.new(0.217600614, 0, 0.136117935, 0)
+
+Welcome_2.Name = "Welcome"
+Welcome_2.Parent = Intro
+Welcome_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Welcome_2.BackgroundTransparency = 1.000
+Welcome_2.BorderSizePixel = 0
+Welcome_2.Position = UDim2.new(0.0326441824, 0, 0.252707571, 0)
+Welcome_2.Size = UDim2.new(0.967355847, 0, 0.18122755, 0)
+Welcome_2.Font = Enum.Font.Code
+Welcome_2.Text = "Welcome, " .. plr.Name
+Welcome_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+Welcome_2.TextScaled = true
+Welcome_2.TextSize = 14.000
+Welcome_2.TextWrapped = true
+Welcome_2.TextXAlignment = Enum.TextXAlignment.Left
+
+Loading.Name = "Loading"
+Loading.Parent = Intro
+Loading.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Loading.BackgroundTransparency = 1.000
+Loading.BorderSizePixel = 0
+Loading.Position = UDim2.new(0.0326441824, 0, 0.550541461, 0)
+Loading.Size = UDim2.new(0.967355847, 0, 0.18122755, 0)
+Loading.Font = Enum.Font.Code
+Loading.Text = "Loading..."
+Loading.TextColor3 = Color3.fromRGB(255, 255, 255)
+Loading.TextScaled = true
+Loading.TextSize = 14.000
+Loading.TextWrapped = true
+Loading.TextXAlignment = Enum.TextXAlignment.Left
+
+Cover.Name = "Cover"
+Cover.Parent = Intro
+Cover.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+Cover.BorderSizePixel = 0
+Cover.Position = UDim2.new(0, 0, 0.198555946, 0)
+Cover.Size = UDim2.new(1, 0, 0.235379174, 0)
+
+--intro
+
+Cover1.Name = "Cover1"
+Cover1.Parent = Intro
+Cover1.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+Cover1.BorderSizePixel = 0
+Cover1.Position = UDim2.new(0, 0, 0.55054152, 0)
+Cover1.Size = UDim2.new(1, 0, 0.235379174, 0)
+wait(2)
+Cover:TweenSizeAndPosition(UDim2.new(1,0,0,0),UDim2.new(0,0,0.434,0),Enum.EasingDirection.InOut,Enum.EasingStyle.Quad,.5)
+wait(1)
+Cover1:TweenSizeAndPosition(UDim2.new(0,0,1,0),UDim2.new(1,0,0.551,0),Enum.EasingDirection.InOut,Enum.EasingStyle.Quad,.5)
+wait(.5)
+Intro.BackgroundTransparency = 0.05
+wait()
+Intro.BackgroundTransparency = 0.1
+wait()
+Intro.BackgroundTransparency = 0.15
+wait()
+Intro.BackgroundTransparency = 0.2
+wait()
+Intro.BackgroundTransparency = 0.25
+wait()
+Intro.BackgroundTransparency = 0.3
+wait()
+Intro.BackgroundTransparency = 0.35
+wait(2)
+Loading.Text = "Checking if game is loaded..."
+if game.Loaded then
+	Loading.Text = "Getting Ego Admin assets ready..."
+	wait(1)
+	Intro.Visible = false
+	Frame.Visible = true
+end
+
+--draggable 
+TopBar.MouseEnter:Connect(function()
+	Frame.Active = true
+	Frame.Draggable = true
+end)
+TopBar.MouseLeave:Connect(function()
+	Frame.Active = false
+	Frame.Draggable = false
+end)
+
+--cmds
 
 local prefix = ';'
 local number = 1
@@ -335,23 +366,22 @@ function change()
 end
 function newtext(String,n)
 	local text = Instance.new('TextLabel')
-	text.Parent = Output
-	text.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	text.Parent = Scroll
+	text.BackgroundColor3 = Color3.fromRGB(0,0,0)
 	text.BackgroundTransparency = 1.000
 	text.BorderSizePixel = 0
-	text.Size = UDim2.new(1, 0, 0, 14)
-	text.Position = UDim2.fromOffset(0,14*n)
+	text.Size = UDim2.new(1, 0, 0, 18)
+	text.Position = UDim2.fromOffset(0,18*n)
 	text.Font = Enum.Font.Code
 	text.Text = String
-	text.TextColor3 = Color3.fromRGB(255, 0, 150)
+	text.TextColor3 = Color3.fromRGB(0,255,0)
 	text.TextScaled = true
-	text.TextSize = 14.000
+	text.TextSize = 18.000
 	text.TextWrapped = true
 	text.TextXAlignment = Enum.TextXAlignment.Left
-	if n/17 == y then
-		Output.CanvasSize = UDim2.fromOffset(0,350*y)
-		y = y + 1
-	end
+	Scroll.CanvasSize = UDim2.fromOffset(0,Scroll.CanvasSize.Y.Offset+(y*18))
+	y = y + 1
+	Input.Position = UDim2.fromOffset(0,18*(n+1))
 end
 
 function showcmds()
@@ -478,7 +508,7 @@ function showcmds()
 	number = number + 1
 	newtext('unfloathat - stops making hats float.',number)
 	number = number + 1
-    newtext('tpparts [plr] - makes all unanchored parts move to player\'s position.',number)
+	newtext('tpparts [plr] - makes all unanchored parts move to player\'s position.',number)
 	number = number + 1
 	newtext('ban [plr] - (BLOXWATCH HQ ONLY, credits to Sinuris) permanently bans anyone from this game, be careful using this cmd!',number)
 	number = number + 1
@@ -516,6 +546,9 @@ function newchat(name,chat)
 	number = number + 1
 	newtext('[' .. name .. ']: ' .. chat,number)
 end
+Discord.MouseButton1Click:Connect(function()
+	newtext("Discord Invite: https://discord.gg/ra3psDT",number)
+end)
 
 function findplayer(String)
 	local list = {}
@@ -640,70 +673,15 @@ game:GetService('RunService').Stepped:Connect(function()
 	end
 end)
 --buttons
-local mininized = false
-Close.MouseEnter:Connect(function()
-	Close.BackgroundColor3 = Color3.fromRGB(255,0,0)
-end)
-Close.MouseLeave:Connect(function()
-	Close.BackgroundColor3 = Color3.fromRGB(25,25,25)
-end)
-Close.MouseButton1Click:Connect(function()
+Exit.MouseButton1Click:Connect(function()
 	closed = true
 	Ego:Destroy()
 end)
-Mininize.MouseEnter:Connect(function()
-	Mininize.BackgroundColor3 = Color3.fromRGB(35,35,35)
-end)
-Mininize.MouseLeave:Connect(function()
-	Mininize.BackgroundColor3 = Color3.fromRGB(25,25,25)
-end)
-Mininize.MouseButton1Click:Connect(function()
-	if not mininized then
-		Main:TweenSize(UDim2.fromOffset(600,20),Enum.EasingDirection.InOut,Enum.EasingStyle.Quad,0.5)
-		mininized = true
-	else
-		Main:TweenSize(UDim2.fromOffset(600,350),Enum.EasingDirection.InOut,Enum.EasingStyle.Quad,0.5)
-		mininized = false
-	end
-end)
-local baropen = false
-Icon.MouseButton1Click:Connect(function()
-	if not baropen then
-		Bar:TweenPosition(UDim2.fromScale(0,1),Enum.EasingDirection.InOut,Enum.EasingStyle.Quad,0.5)
-		baropen = true
-	else
-		Bar:TweenPosition(UDim2.fromScale(0,0.300000012),Enum.EasingDirection.InOut,Enum.EasingStyle.Quad,0.5)
-		baropen = false
-	end
-end)
-Help.MouseButton1Click:Connect(function()
-	if baropen then
-		showcmds()
-	end
-end)
-Credit.MouseButton1Click:Connect(function()
-	if baropen then
-		number = number + 1
-		newtext('The owner of Ego Admin - Luckytrang2010',number)
-		number = number + 1
-		newtext('The first founder of Ego - AtlanticMoynihan',number)
-	end
-end)
-Clear.MouseButton1Click:Connect(function()
-	for i,v in pairs(Output:GetChildren()) do
-		v:Remove()
-		number = 1
-		y = 1
-		Output.CanvasSize = UDim2.new(0,0,0,0)
-		chatlogs = false
-	end
-end)
-
 --focus
 mouse.KeyDown:Connect(function(key)
-	if key == prefix and not closed and not mininized then
+	if key == prefix and not closed then
 		wait()
-		CommandBar:CaptureFocus()
+		Box:CaptureFocus()
 	end
 end)
 
@@ -786,7 +764,7 @@ plr.Chatted:Connect(function(msg)
 		end
 		if string.sub(msg:lower(),1,8) == prefix .. 'undance' then
 			load:Stop()
-			dance:Destroy()
+			dance1:Destroy()
 		end
 		if string.sub(msg:lower(),1,12) == prefix .. 'glitchaudio' then
 			spamaudioglitch = true
@@ -827,69 +805,69 @@ plr.Chatted:Connect(function(msg)
 		end
 		if string.sub(msg:lower(),1,4) == prefix .. 'fly' then
 			local speedget = speedfly
-				repeat wait() until plr and plr.Character and plr.Character:FindFirstChild('HumanoidRootPart') and plr.Character:FindFirstChild('Humanoid')
-		repeat wait() until mouse
-		local T = plr.Character.HumanoidRootPart
-		local CONTROL = {F = 0, B = 0, L = 0, R = 0}
-		local lCONTROL = {F = 0, B = 0, L = 0, R = 0}
-		local SPEED = speedget
-		local function fly()
-			flying = true
-			local BG = Instance.new('BodyGyro', T)
-			local BV = Instance.new('BodyVelocity', T)
-			BG.P = 9e4
-			BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
-			BG.cframe = T.CFrame
-			BV.velocity = Vector3.new(0, 0, 0)
-			BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
-			spawn(function()
-				repeat wait()
-				plr.Character.Humanoid.PlatformStand = true
-				if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 then
-					SPEED = 50
-				elseif not (CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0) and SPEED ~= 0 then
+			repeat wait() until plr and plr.Character and plr.Character:FindFirstChild('HumanoidRootPart') and plr.Character:FindFirstChild('Humanoid')
+			repeat wait() until mouse
+			local T = plr.Character.HumanoidRootPart
+			local CONTROL = {F = 0, B = 0, L = 0, R = 0}
+			local lCONTROL = {F = 0, B = 0, L = 0, R = 0}
+			local SPEED = speedget
+			local function fly()
+				flying = true
+				local BG = Instance.new('BodyGyro', T)
+				local BV = Instance.new('BodyVelocity', T)
+				BG.P = 9e4
+				BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+				BG.cframe = T.CFrame
+				BV.velocity = Vector3.new(0, 0, 0)
+				BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
+				spawn(function()
+					repeat wait()
+						plr.Character.Humanoid.PlatformStand = true
+						if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 then
+							SPEED = 50
+						elseif not (CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0) and SPEED ~= 0 then
+							SPEED = 0
+						end
+						if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 then
+							BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (CONTROL.F + CONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(CONTROL.L + CONTROL.R, (CONTROL.F + CONTROL.B) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+							lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
+						elseif (CONTROL.L + CONTROL.R) == 0 and (CONTROL.F + CONTROL.B) == 0 and SPEED ~= 0 then
+							BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (lCONTROL.F + lCONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(lCONTROL.L + lCONTROL.R, (lCONTROL.F + lCONTROL.B) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+						else
+							BV.velocity = Vector3.new(0, 0, 0)
+						end
+						BG.cframe = workspace.CurrentCamera.CoordinateFrame
+					until not flying
+					CONTROL = {F = 0, B = 0, L = 0, R = 0}
+					lCONTROL = {F = 0, B = 0, L = 0, R = 0}
 					SPEED = 0
+					BG:destroy()
+					BV:destroy()
+					plr.Character.Humanoid.PlatformStand = false
+				end)
+			end
+			mouse.KeyDown:connect(function(KEY)
+				if KEY:lower() == 'w' then
+					CONTROL.F = speedfly
+				elseif KEY:lower() == 's' then
+					CONTROL.B = -speedfly
+				elseif KEY:lower() == 'a' then
+					CONTROL.L = -speedfly
+				elseif KEY:lower() == 'd' then
+					CONTROL.R = speedfly
 				end
-				if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 then
-					BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (CONTROL.F + CONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(CONTROL.L + CONTROL.R, (CONTROL.F + CONTROL.B) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
-					lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
-				elseif (CONTROL.L + CONTROL.R) == 0 and (CONTROL.F + CONTROL.B) == 0 and SPEED ~= 0 then
-					BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (lCONTROL.F + lCONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(lCONTROL.L + lCONTROL.R, (lCONTROL.F + lCONTROL.B) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
-				else
-					BV.velocity = Vector3.new(0, 0, 0)
-				end
-				BG.cframe = workspace.CurrentCamera.CoordinateFrame
-				until not flying
-				CONTROL = {F = 0, B = 0, L = 0, R = 0}
-				lCONTROL = {F = 0, B = 0, L = 0, R = 0}
-				SPEED = 0
-				BG:destroy()
-				BV:destroy()
-				plr.Character.Humanoid.PlatformStand = false
 			end)
-		end
-		mouse.KeyDown:connect(function(KEY)
-			if KEY:lower() == 'w' then
-				CONTROL.F = speedfly
-			elseif KEY:lower() == 's' then
-				CONTROL.B = -speedfly
-			elseif KEY:lower() == 'a' then
-				CONTROL.L = -speedfly
-			elseif KEY:lower() == 'd' then
-				CONTROL.R = speedfly
-			end
-		end)
-		mouse.KeyUp:connect(function(KEY)
-			if KEY:lower() == 'w' then
-				CONTROL.F = 0
-			elseif KEY:lower() == 's' then
-				CONTROL.B = 0
-			elseif KEY:lower() == 'a' then
-				CONTROL.L = 0
-			elseif KEY:lower() == 'd' then
-				CONTROL.R = 0
-			end
-		end)
+			mouse.KeyUp:connect(function(KEY)
+				if KEY:lower() == 'w' then
+					CONTROL.F = 0
+				elseif KEY:lower() == 's' then
+					CONTROL.B = 0
+				elseif KEY:lower() == 'a' then
+					CONTROL.L = 0
+				elseif KEY:lower() == 'd' then
+					CONTROL.R = 0
+				end
+			end)
 			fly()
 			number = number + 1
 			newtext('Flying enabled!',number)
@@ -1087,74 +1065,74 @@ plr.Chatted:Connect(function(msg)
 				annoy = true
 				repeat wait()
 					local speedget = speedfly
-				repeat wait() until plr and plr.Character and plr.Character:FindFirstChild('HumanoidRootPart') and plr.Character:FindFirstChild('Humanoid')
-		repeat wait() until mouse
-		local T = plr.Character.HumanoidRootPart
-		local CONTROL = {F = 0, B = 0, L = 0, R = 0}
-		local lCONTROL = {F = 0, B = 0, L = 0, R = 0}
-		local SPEED = speedget
-		local function fly()
-			flying = true
-			local BG = Instance.new('BodyGyro', T)
-			local BV = Instance.new('BodyVelocity', T)
-			BG.P = 9e4
-			BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
-			BG.cframe = T.CFrame
-			BV.velocity = Vector3.new(0, 0, 0)
-			BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
-			spawn(function()
-				repeat wait()
-				plr.Character.Humanoid.PlatformStand = true
-				if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 then
-					SPEED = 50
-				elseif not (CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0) and SPEED ~= 0 then
-					SPEED = 0
-				end
-				if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 then
-					BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (CONTROL.F + CONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(CONTROL.L + CONTROL.R, (CONTROL.F + CONTROL.B) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
-					lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
-				elseif (CONTROL.L + CONTROL.R) == 0 and (CONTROL.F + CONTROL.B) == 0 and SPEED ~= 0 then
-					BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (lCONTROL.F + lCONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(lCONTROL.L + lCONTROL.R, (lCONTROL.F + lCONTROL.B) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
-				else
-					BV.velocity = Vector3.new(0, 0, 0)
-				end
-				BG.cframe = workspace.CurrentCamera.CoordinateFrame
-				until not flying
-				CONTROL = {F = 0, B = 0, L = 0, R = 0}
-				lCONTROL = {F = 0, B = 0, L = 0, R = 0}
-				SPEED = 0
-				BG:destroy()
-				BV:destroy()
-				plr.Character.Humanoid.PlatformStand = false
-			end)
-		end
-		mouse.KeyDown:connect(function(KEY)
-			if KEY:lower() == 'w' then
-				CONTROL.F = speedfly
-			elseif KEY:lower() == 's' then
-				CONTROL.B = -speedfly
-			elseif KEY:lower() == 'a' then
-				CONTROL.L = -speedfly
-			elseif KEY:lower() == 'd' then
-				CONTROL.R = speedfly
-			end
-		end)
-		mouse.KeyUp:connect(function(KEY)
-			if KEY:lower() == 'w' then
-				CONTROL.F = 0
-			elseif KEY:lower() == 's' then
-				CONTROL.B = 0
-			elseif KEY:lower() == 'a' then
-				CONTROL.L = 0
-			elseif KEY:lower() == 'd' then
-				CONTROL.R = 0
-			end
-		end)
-			fly()
-			local haha = Instance.new('BodyThrust',plr.Character.HumanoidRootPart)
-			haha.Location = plr.Character.HumanoidRootPart.Position
-			haha.Force = Vector3.new(5000000,0,5000000)
-			noclip = true
+					repeat wait() until plr and plr.Character and plr.Character:FindFirstChild('HumanoidRootPart') and plr.Character:FindFirstChild('Humanoid')
+					repeat wait() until mouse
+					local T = plr.Character.HumanoidRootPart
+					local CONTROL = {F = 0, B = 0, L = 0, R = 0}
+					local lCONTROL = {F = 0, B = 0, L = 0, R = 0}
+					local SPEED = speedget
+					local function fly()
+						flying = true
+						local BG = Instance.new('BodyGyro', T)
+						local BV = Instance.new('BodyVelocity', T)
+						BG.P = 9e4
+						BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+						BG.cframe = T.CFrame
+						BV.velocity = Vector3.new(0, 0, 0)
+						BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
+						spawn(function()
+							repeat wait()
+								plr.Character.Humanoid.PlatformStand = true
+								if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 then
+									SPEED = 50
+								elseif not (CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0) and SPEED ~= 0 then
+									SPEED = 0
+								end
+								if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 then
+									BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (CONTROL.F + CONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(CONTROL.L + CONTROL.R, (CONTROL.F + CONTROL.B) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+									lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
+								elseif (CONTROL.L + CONTROL.R) == 0 and (CONTROL.F + CONTROL.B) == 0 and SPEED ~= 0 then
+									BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (lCONTROL.F + lCONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(lCONTROL.L + lCONTROL.R, (lCONTROL.F + lCONTROL.B) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+								else
+									BV.velocity = Vector3.new(0, 0, 0)
+								end
+								BG.cframe = workspace.CurrentCamera.CoordinateFrame
+							until not flying
+							CONTROL = {F = 0, B = 0, L = 0, R = 0}
+							lCONTROL = {F = 0, B = 0, L = 0, R = 0}
+							SPEED = 0
+							BG:destroy()
+							BV:destroy()
+							plr.Character.Humanoid.PlatformStand = false
+						end)
+					end
+					mouse.KeyDown:connect(function(KEY)
+						if KEY:lower() == 'w' then
+							CONTROL.F = speedfly
+						elseif KEY:lower() == 's' then
+							CONTROL.B = -speedfly
+						elseif KEY:lower() == 'a' then
+							CONTROL.L = -speedfly
+						elseif KEY:lower() == 'd' then
+							CONTROL.R = speedfly
+						end
+					end)
+					mouse.KeyUp:connect(function(KEY)
+						if KEY:lower() == 'w' then
+							CONTROL.F = 0
+						elseif KEY:lower() == 's' then
+							CONTROL.B = 0
+						elseif KEY:lower() == 'a' then
+							CONTROL.L = 0
+						elseif KEY:lower() == 'd' then
+							CONTROL.R = 0
+						end
+					end)
+					fly()
+					local haha = Instance.new('BodyThrust',plr.Character.HumanoidRootPart)
+					haha.Location = plr.Character.HumanoidRootPart.Position
+					haha.Force = Vector3.new(5000000,0,5000000)
+					noclip = true
 					plr.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame
 					wait(2)
 					haha:Remove()
@@ -1240,11 +1218,11 @@ plr.Chatted:Connect(function(msg)
 			newtext('Max Players: ' .. game.Players.MaxPlayers,number)
 		end
 		if string.sub(msg:lower(),1,6) == prefix .. 'clear' then
-			for i,v in pairs(Output:GetChildren()) do
+			for i,v in pairs(Scroll:GetChildren()) do
 				v:Remove()
 				number = 1
 				y = 1
-				Output.CanvasSize = UDim2.new(0,0,0,0)
+				Scroll.CanvasSize = UDim2.new(0,0,0,0)
 				chatlogs = false
 			end
 		end
@@ -1341,51 +1319,51 @@ plr.Chatted:Connect(function(msg)
 					end
 				end
 			end
-        end
-        if string.sub(msg:lower(),1,5) == prefix .. 'ban ' then
-            if game.PlaceId == 1021229926 then
-                for i,v in pairs(findplayer(string.sub(msg,6))) do
-                    workspace.ban.RemoteEvent:FireServer(v.Name)
-                    number = number + 1
-                    newtext("Banned " .. v.Name .. " from Bloxwatch HQ!",number)
-                end
-            else
-                number = number + 1
-                newtext("Can't ban: the game you're playing isn't Bloxwatch HQ.",number)
-            end
-        end
-        if string.sub(msg:lower(),1,6) == prefix .. 'kick ' then
-            if game.PlaceId == 1021229926 then
-                for i,v in pairs(findplayer(string.sub(msg,7))) do
-                    workspace.kick.RemoteEvent:FireServer(v.Name)
-                    number = number + 1
-                    newtext("Kicked " .. v.Name .. " from Bloxwatch HQ!",number)
-                end
-            else
-                number = number + 1
-                newtext("Can't ban: the game you're playing isn't Bloxwatch HQ.",number)
-            end
-        end
-        if string.sub(msg:lower(),1,6) == prefix .. 'slock' or string.sub(msg:lower(),1,11) == prefix .. 'serverlock' then
-            if game.PlaceId == 1021229926 then
-                slock = true
-                number = number + 1
-                newtext("Serverlocked the server in Bloxwatch HQ! :D",number)
-                game.Players.PlayerAdded:Connect(function(plr)
-                    if game.PlaceId == 1021229926 then
-                        if slock then
-                            workspace.kick.RemoteEvent:FireServer(plr.Name)
-                        end
-                    end
-                end)
-            end
-        end
-        if string.sub(msg:lower(),1,8) == prefix .. 'unslock' or string.sub(msg:lower(),1,13) == prefix .. 'unserverlock' then
-            if game.PlaceId == 1021229926 then
-                slock = false
-                number = number + 1
-                newtext("Unserverlocked the server in Bloxwatch HQ! :D",number)
-            end
+		end
+		if string.sub(msg:lower(),1,5) == prefix .. 'ban ' then
+			if game.PlaceId == 1021229926 then
+				for i,v in pairs(findplayer(string.sub(msg,6))) do
+					workspace.ban.RemoteEvent:FireServer(v.Name)
+					number = number + 1
+					newtext("Banned " .. v.Name .. " from Bloxwatch HQ!",number)
+				end
+			else
+				number = number + 1
+				newtext("Can't ban: the game you're playing isn't Bloxwatch HQ.",number)
+			end
+		end
+		if string.sub(msg:lower(),1,6) == prefix .. 'kick ' then
+			if game.PlaceId == 1021229926 then
+				for i,v in pairs(findplayer(string.sub(msg,7))) do
+					workspace.kick.RemoteEvent:FireServer(v.Name)
+					number = number + 1
+					newtext("Kicked " .. v.Name .. " from Bloxwatch HQ!",number)
+				end
+			else
+				number = number + 1
+				newtext("Can't ban: the game you're playing isn't Bloxwatch HQ.",number)
+			end
+		end
+		if string.sub(msg:lower(),1,6) == prefix .. 'slock' or string.sub(msg:lower(),1,11) == prefix .. 'serverlock' then
+			if game.PlaceId == 1021229926 then
+				slock = true
+				number = number + 1
+				newtext("Serverlocked the server in Bloxwatch HQ! :D",number)
+				game.Players.PlayerAdded:Connect(function(plr)
+					if game.PlaceId == 1021229926 then
+						if slock then
+							workspace.kick.RemoteEvent:FireServer(plr.Name)
+						end
+					end
+				end)
+			end
+		end
+		if string.sub(msg:lower(),1,8) == prefix .. 'unslock' or string.sub(msg:lower(),1,13) == prefix .. 'unserverlock' then
+			if game.PlaceId == 1021229926 then
+				slock = false
+				number = number + 1
+				newtext("Unserverlocked the server in Bloxwatch HQ! :D",number)
+			end
 		end
 		if string.sub(msg:lower(),1,13) == prefix .. 'listcoreguis' then
 			local st = {'PlayerList','Chat','EmotesMenu','Backpack','Health','All'}
@@ -1497,9 +1475,9 @@ plr.Chatted:Connect(function(msg)
 end)
 
 --command bar
-CommandBar.FocusLost:Connect(function(entered)
-	local t = CommandBar.Text
-	if entered and not closed and not mininized then
+Box.FocusLost:Connect(function(entered)
+	local t = Box.Text
+	if entered and not closed then
 		if string.sub(t:lower(),1,4) == 'cmds' or string.sub(t:lower(),1,4) == 'help' then
 			showcmds()
 		end
@@ -1641,71 +1619,71 @@ CommandBar.FocusLost:Connect(function(entered)
 			newtext('Number picked from ' .. tostring(args[1]) .. ' to ' .. tostring(args[2]) .. ' - ' .. hee,number)
 		end
 		if string.sub(t:lower(),1,3) == 'fly' then
-				local speedget = speedfly
-				repeat wait() until plr and plr.Character and plr.Character:FindFirstChild('HumanoidRootPart') and plr.Character:FindFirstChild('Humanoid')
-		repeat wait() until mouse
-		local T = plr.Character.HumanoidRootPart
-		local CONTROL = {F = 0, B = 0, L = 0, R = 0}
-		local lCONTROL = {F = 0, B = 0, L = 0, R = 0}
-		local SPEED = speedget
-		local function fly()
-			flying = true
-			local BG = Instance.new('BodyGyro', T)
-			local BV = Instance.new('BodyVelocity', T)
-			BG.P = 9e4
-			BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
-			BG.cframe = T.CFrame
-			BV.velocity = Vector3.new(0, 0, 0)
-			BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
-			spawn(function()
-				repeat wait()
-				plr.Character.Humanoid.PlatformStand = true
-				if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 then
-					SPEED = 50
-				elseif not (CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0) and SPEED ~= 0 then
+			local speedget = speedfly
+			repeat wait() until plr and plr.Character and plr.Character:FindFirstChild('HumanoidRootPart') and plr.Character:FindFirstChild('Humanoid')
+			repeat wait() until mouse
+			local T = plr.Character.HumanoidRootPart
+			local CONTROL = {F = 0, B = 0, L = 0, R = 0}
+			local lCONTROL = {F = 0, B = 0, L = 0, R = 0}
+			local SPEED = speedget
+			local function fly()
+				flying = true
+				local BG = Instance.new('BodyGyro', T)
+				local BV = Instance.new('BodyVelocity', T)
+				BG.P = 9e4
+				BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+				BG.cframe = T.CFrame
+				BV.velocity = Vector3.new(0, 0, 0)
+				BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
+				spawn(function()
+					repeat wait()
+						plr.Character.Humanoid.PlatformStand = true
+						if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 then
+							SPEED = 50
+						elseif not (CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0) and SPEED ~= 0 then
+							SPEED = 0
+						end
+						if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 then
+							BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (CONTROL.F + CONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(CONTROL.L + CONTROL.R, (CONTROL.F + CONTROL.B) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+							lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
+						elseif (CONTROL.L + CONTROL.R) == 0 and (CONTROL.F + CONTROL.B) == 0 and SPEED ~= 0 then
+							BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (lCONTROL.F + lCONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(lCONTROL.L + lCONTROL.R, (lCONTROL.F + lCONTROL.B) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+						else
+							BV.velocity = Vector3.new(0, 0, 0)
+						end
+						BG.cframe = workspace.CurrentCamera.CoordinateFrame
+					until not flying
+					CONTROL = {F = 0, B = 0, L = 0, R = 0}
+					lCONTROL = {F = 0, B = 0, L = 0, R = 0}
 					SPEED = 0
+					BG:destroy()
+					BV:destroy()
+					plr.Character.Humanoid.PlatformStand = false
+				end)
+			end
+			mouse.KeyDown:connect(function(KEY)
+				if KEY:lower() == 'w' then
+					CONTROL.F = speedfly
+				elseif KEY:lower() == 's' then
+					CONTROL.B = -speedfly
+				elseif KEY:lower() == 'a' then
+					CONTROL.L = -speedfly
+				elseif KEY:lower() == 'd' then
+					CONTROL.R = speedfly
 				end
-				if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 then
-					BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (CONTROL.F + CONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(CONTROL.L + CONTROL.R, (CONTROL.F + CONTROL.B) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
-					lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
-				elseif (CONTROL.L + CONTROL.R) == 0 and (CONTROL.F + CONTROL.B) == 0 and SPEED ~= 0 then
-					BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (lCONTROL.F + lCONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(lCONTROL.L + lCONTROL.R, (lCONTROL.F + lCONTROL.B) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
-				else
-					BV.velocity = Vector3.new(0, 0, 0)
-				end
-				BG.cframe = workspace.CurrentCamera.CoordinateFrame
-				until not flying
-				CONTROL = {F = 0, B = 0, L = 0, R = 0}
-				lCONTROL = {F = 0, B = 0, L = 0, R = 0}
-				SPEED = 0
-				BG:destroy()
-				BV:destroy()
-				plr.Character.Humanoid.PlatformStand = false
 			end)
-		end
-		mouse.KeyDown:connect(function(KEY)
-			if KEY:lower() == 'w' then
-				CONTROL.F = speedfly
-			elseif KEY:lower() == 's' then
-				CONTROL.B = -speedfly
-			elseif KEY:lower() == 'a' then
-				CONTROL.L = -speedfly
-			elseif KEY:lower() == 'd' then
-				CONTROL.R = speedfly
-			end
-		end)
-		mouse.KeyUp:connect(function(KEY)
-			if KEY:lower() == 'w' then
-				CONTROL.F = 0
-			elseif KEY:lower() == 's' then
-				CONTROL.B = 0
-			elseif KEY:lower() == 'a' then
-				CONTROL.L = 0
-			elseif KEY:lower() == 'd' then
-				CONTROL.R = 0
-			end
-		end)
-		fly()
+			mouse.KeyUp:connect(function(KEY)
+				if KEY:lower() == 'w' then
+					CONTROL.F = 0
+				elseif KEY:lower() == 's' then
+					CONTROL.B = 0
+				elseif KEY:lower() == 'a' then
+					CONTROL.L = 0
+				elseif KEY:lower() == 'd' then
+					CONTROL.R = 0
+				end
+			end)
+			fly()
 			number = number + 1
 			newtext('Flying enabled!',number)
 		end
@@ -1905,74 +1883,74 @@ CommandBar.FocusLost:Connect(function(entered)
 				annoy = true
 				repeat wait()
 					local speedget = speedfly
-				repeat wait() until plr and plr.Character and plr.Character:FindFirstChild('HumanoidRootPart') and plr.Character:FindFirstChild('Humanoid')
-		repeat wait() until mouse
-		local T = plr.Character.HumanoidRootPart
-		local CONTROL = {F = 0, B = 0, L = 0, R = 0}
-		local lCONTROL = {F = 0, B = 0, L = 0, R = 0}
-		local SPEED = speedget
-		local function fly()
-			flying = true
-			local BG = Instance.new('BodyGyro', T)
-			local BV = Instance.new('BodyVelocity', T)
-			BG.P = 9e4
-			BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
-			BG.cframe = T.CFrame
-			BV.velocity = Vector3.new(0, 0, 0)
-			BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
-			spawn(function()
-				repeat wait()
-				plr.Character.Humanoid.PlatformStand = true
-				if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 then
-					SPEED = 50
-				elseif not (CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0) and SPEED ~= 0 then
-					SPEED = 0
-				end
-				if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 then
-					BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (CONTROL.F + CONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(CONTROL.L + CONTROL.R, (CONTROL.F + CONTROL.B) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
-					lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
-				elseif (CONTROL.L + CONTROL.R) == 0 and (CONTROL.F + CONTROL.B) == 0 and SPEED ~= 0 then
-					BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (lCONTROL.F + lCONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(lCONTROL.L + lCONTROL.R, (lCONTROL.F + lCONTROL.B) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
-				else
-					BV.velocity = Vector3.new(0, 0, 0)
-				end
-				BG.cframe = workspace.CurrentCamera.CoordinateFrame
-				until not flying
-				CONTROL = {F = 0, B = 0, L = 0, R = 0}
-				lCONTROL = {F = 0, B = 0, L = 0, R = 0}
-				SPEED = 0
-				BG:destroy()
-				BV:destroy()
-				plr.Character.Humanoid.PlatformStand = false
-			end)
-		end
-		mouse.KeyDown:connect(function(KEY)
-			if KEY:lower() == 'w' then
-				CONTROL.F = speedfly
-			elseif KEY:lower() == 's' then
-				CONTROL.B = -speedfly
-			elseif KEY:lower() == 'a' then
-				CONTROL.L = -speedfly
-			elseif KEY:lower() == 'd' then
-				CONTROL.R = speedfly
-			end
-		end)
-		mouse.KeyUp:connect(function(KEY)
-			if KEY:lower() == 'w' then
-				CONTROL.F = 0
-			elseif KEY:lower() == 's' then
-				CONTROL.B = 0
-			elseif KEY:lower() == 'a' then
-				CONTROL.L = 0
-			elseif KEY:lower() == 'd' then
-				CONTROL.R = 0
-			end
-		end)
-			fly()
-			local haha = Instance.new('BodyThrust',plr.Character.HumanoidRootPart)
-			haha.Location = plr.Character.HumanoidRootPart.Position
-			haha.Force = Vector3.new(5000000,0,5000000)
-			noclip = true
+					repeat wait() until plr and plr.Character and plr.Character:FindFirstChild('HumanoidRootPart') and plr.Character:FindFirstChild('Humanoid')
+					repeat wait() until mouse
+					local T = plr.Character.HumanoidRootPart
+					local CONTROL = {F = 0, B = 0, L = 0, R = 0}
+					local lCONTROL = {F = 0, B = 0, L = 0, R = 0}
+					local SPEED = speedget
+					local function fly()
+						flying = true
+						local BG = Instance.new('BodyGyro', T)
+						local BV = Instance.new('BodyVelocity', T)
+						BG.P = 9e4
+						BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+						BG.cframe = T.CFrame
+						BV.velocity = Vector3.new(0, 0, 0)
+						BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
+						spawn(function()
+							repeat wait()
+								plr.Character.Humanoid.PlatformStand = true
+								if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 then
+									SPEED = 50
+								elseif not (CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0) and SPEED ~= 0 then
+									SPEED = 0
+								end
+								if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 then
+									BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (CONTROL.F + CONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(CONTROL.L + CONTROL.R, (CONTROL.F + CONTROL.B) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+									lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
+								elseif (CONTROL.L + CONTROL.R) == 0 and (CONTROL.F + CONTROL.B) == 0 and SPEED ~= 0 then
+									BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (lCONTROL.F + lCONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(lCONTROL.L + lCONTROL.R, (lCONTROL.F + lCONTROL.B) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+								else
+									BV.velocity = Vector3.new(0, 0, 0)
+								end
+								BG.cframe = workspace.CurrentCamera.CoordinateFrame
+							until not flying
+							CONTROL = {F = 0, B = 0, L = 0, R = 0}
+							lCONTROL = {F = 0, B = 0, L = 0, R = 0}
+							SPEED = 0
+							BG:destroy()
+							BV:destroy()
+							plr.Character.Humanoid.PlatformStand = false
+						end)
+					end
+					mouse.KeyDown:connect(function(KEY)
+						if KEY:lower() == 'w' then
+							CONTROL.F = speedfly
+						elseif KEY:lower() == 's' then
+							CONTROL.B = -speedfly
+						elseif KEY:lower() == 'a' then
+							CONTROL.L = -speedfly
+						elseif KEY:lower() == 'd' then
+							CONTROL.R = speedfly
+						end
+					end)
+					mouse.KeyUp:connect(function(KEY)
+						if KEY:lower() == 'w' then
+							CONTROL.F = 0
+						elseif KEY:lower() == 's' then
+							CONTROL.B = 0
+						elseif KEY:lower() == 'a' then
+							CONTROL.L = 0
+						elseif KEY:lower() == 'd' then
+							CONTROL.R = 0
+						end
+					end)
+					fly()
+					local haha = Instance.new('BodyThrust',plr.Character.HumanoidRootPart)
+					haha.Location = plr.Character.HumanoidRootPart.Position
+					haha.Force = Vector3.new(5000000,0,5000000)
+					noclip = true
 					plr.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame
 					wait(2)
 					haha:Remove()
@@ -2058,11 +2036,11 @@ CommandBar.FocusLost:Connect(function(entered)
 			newtext('Max Players: ' .. game.Players.MaxPlayers,number)
 		end
 		if string.sub(t:lower(),1,5) == 'clear' then
-			for i,v in pairs(Output:GetChildren()) do
+			for i,v in pairs(Scroll:GetChildren()) do
 				v:Remove()
 				number = 1
 				y = 1
-				Output.CanvasSize = UDim2.new(0,0,0,0)
+				Scroll.CanvasSize = UDim2.new(0,0,0,0)
 				chatlogs = false
 			end
 		end
@@ -2159,51 +2137,51 @@ CommandBar.FocusLost:Connect(function(entered)
 					end
 				end
 			end
-        end
-        if string.sub(t:lower(),1,4) == 'ban ' then
-            if game.PlaceId == 1021229926 then
-                for i,v in pairs(findplayer(string.sub(t,5))) do
-                    workspace.ban.RemoteEvent:FireServer(v.Name)
-                    number = number + 1
-                    newtext("Banned " .. v.Name .. " from Bloxwatch HQ!",number)
-                end
-            else
-                number = number + 1
-                newtext("Can't ban: the game you're playing isn't Bloxwatch HQ.",number)
-            end
-        end
-        if string.sub(t:lower(),1,5) == 'kick ' then
-            if game.PlaceId == 1021229926 then
-                for i,v in pairs(findplayer(string.sub(t,6))) do
-                    workspace.kick.RemoteEvent:FireServer(v.Name)
-                    number = number + 1
-                    newtext("Kicked " .. v.Name .. " from Bloxwatch HQ!",number)
-                end
-            else
-                number = number + 1
-                newtext("Can't ban: the game you're playing isn't Bloxwatch HQ.",number)
-            end
-        end
-        if string.sub(t:lower(),1,5) == 'slock' or string.sub(t:lower(),1,10) == 'serverlock' then
-            if game.PlaceId == 1021229926 then
-                slock = true
-                number = number + 1
-                newtext("Serverlocked the server in Bloxwatch HQ! :D",number)
-                game.Players.PlayerAdded:Connect(function(plr)
-                    if game.PlaceId == 1021229926 then
-                        if slock then
-                            workspace.kick.RemoteEvent:FireServer(plr.Name)
-                        end
-                    end
-                end)
-            end
-        end
-        if string.sub(t:lower(),1,7) == 'unslock' or string.sub(t:lower(),1,12) == 'unserverlock' then
-            if game.PlaceId == 1021229926 then
-                slock = false
-                number = number + 1
-                newtext("Unserverlocked the server in Bloxwatch HQ! :D",number)
-            end
+		end
+		if string.sub(t:lower(),1,4) == 'ban ' then
+			if game.PlaceId == 1021229926 then
+				for i,v in pairs(findplayer(string.sub(t,5))) do
+					workspace.ban.RemoteEvent:FireServer(v.Name)
+					number = number + 1
+					newtext("Banned " .. v.Name .. " from Bloxwatch HQ!",number)
+				end
+			else
+				number = number + 1
+				newtext("Can't ban: the game you're playing isn't Bloxwatch HQ.",number)
+			end
+		end
+		if string.sub(t:lower(),1,5) == 'kick ' then
+			if game.PlaceId == 1021229926 then
+				for i,v in pairs(findplayer(string.sub(t,6))) do
+					workspace.kick.RemoteEvent:FireServer(v.Name)
+					number = number + 1
+					newtext("Kicked " .. v.Name .. " from Bloxwatch HQ!",number)
+				end
+			else
+				number = number + 1
+				newtext("Can't ban: the game you're playing isn't Bloxwatch HQ.",number)
+			end
+		end
+		if string.sub(t:lower(),1,5) == 'slock' or string.sub(t:lower(),1,10) == 'serverlock' then
+			if game.PlaceId == 1021229926 then
+				slock = true
+				number = number + 1
+				newtext("Serverlocked the server in Bloxwatch HQ! :D",number)
+				game.Players.PlayerAdded:Connect(function(plr)
+					if game.PlaceId == 1021229926 then
+						if slock then
+							workspace.kick.RemoteEvent:FireServer(plr.Name)
+						end
+					end
+				end)
+			end
+		end
+		if string.sub(t:lower(),1,7) == 'unslock' or string.sub(t:lower(),1,12) == 'unserverlock' then
+			if game.PlaceId == 1021229926 then
+				slock = false
+				number = number + 1
+				newtext("Unserverlocked the server in Bloxwatch HQ! :D",number)
+			end
 		end
 		if string.sub(t:lower(),1,12) == 'listcoreguis' then
 			local st = {'PlayerList','Chat','EmotesMenu','Backpack','Health','All'}
