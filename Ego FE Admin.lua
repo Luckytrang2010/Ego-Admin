@@ -358,6 +358,8 @@ local disco = false
 local defambient = Color3.fromRGB(0,0,0)
 defambient = game.Lighting.Ambient
 local antimute = false
+local following = false
+local followtarget = nil
 
 function change()
 	speedfly = speedfly
@@ -541,6 +543,10 @@ function showcmds()
 	newtext('antimute - spam enables chat.',number)
 	number = number + 1
 	newtext('unantimute - stops spam enabling chat.',number)
+	number = number + 1
+	newtext('follow [plr] - makes your character walk to player.',number)
+	number = number + 1
+	newtext('unfollow - stops making your character walking to player.',number)
 end
 function newchat(name,chat)
 	number = number + 1
@@ -1475,6 +1481,21 @@ plr.Chatted:Connect(function(msg)
 		if string.sub(msg:lower(),1,11) == prefix .. 'unantimute' then
 			antimute = false
 		end
+		if string.sub(msg:lower(),1,8) == prefix .. "follow " then
+			for i,v in pairs(findplayer(string.sub(msg,9))) do 
+				following = true
+				followtarget = v
+				game:GetService("RunService").Stepped:Connect(function()
+					if following then
+						plr.Character.Humanoid:MoveTo(followtarget.Character.HumanoidRootPart.Position)
+					end
+				end)
+			end
+		end
+		if string.sub(msg:lower(),1,9) == prefix .. "unfollow" then
+			following = false
+			followtarget = nil
+		end
 	end
 end)
 
@@ -2296,6 +2317,21 @@ Box.FocusLost:Connect(function(entered)
 		end
 		if string.sub(t:lower(),1,10) == 'unantimute' then
 			antimute = false
+		end
+		if string.sub(t:lower(),1,7) == "follow " then
+			for i,v in pairs(findplayer(string.sub(t,8))) do 
+				following = true
+				followtarget = v
+				game:GetService("RunService").Stepped:Connect(function()
+					if following then
+						plr.Character.Humanoid:MoveTo(followtarget.Character.HumanoidRootPart.Position)
+					end
+				end)
+			end
+		end
+		if string.sub(t:lower(),1,8) == "unfollow" then
+			following = false
+			followtarget = nil
 		end
 	end
 end)
