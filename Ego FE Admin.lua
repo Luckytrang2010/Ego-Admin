@@ -1,4 +1,4 @@
---Made by 4Bytes#9688 aka Luckytrang2010/Tangly
+--Made by Tangly#9688 aka Luckytrang2010/Tangly
 --Inspired by Sinuris
 --Since yall think I skidded from IY, credits for IY
 local plr = game.Players.LocalPlayer
@@ -512,9 +512,9 @@ function showcmds()
 	number = number + 1
 	newtext('tpparts [plr] - makes all unanchored parts move to player\'s position.',number)
 	number = number + 1
-	newtext('ban [plr] - (BLOXWATCH HQ ONLY, credits to Sinuris) permanently bans anyone from this game, be careful using this cmd!',number)
+	newtext('ban [plr] [reason] - (BLOXWATCH HQ ONLY, credits to Sinuris) permanently bans anyone from this game, be careful using this cmd!',number)
 	number = number + 1
-	newtext('kick [plr] - (BLOXWATCH HQ ONLY, credits to Sinuris) kicks anyone from this game.',number)
+	newtext('kick [plr] [reason] - (BLOXWATCH HQ ONLY, credits to Sinuris) kicks anyone from this game.',number)
 	number = number + 1
 	newtext('slock/serverlock - (BLOXWATCH HQ ONLY, credits to Sinuris) locks the server.',number)
 	number = number + 1
@@ -1331,9 +1331,20 @@ plr.Chatted:Connect(function(msg)
 			end
 		end
 		if string.sub(msg:lower(),1,5) == prefix .. 'ban ' then
-			if game.PlaceId == 1021229926 then
-				for i,v in pairs(findplayer(string.sub(msg,6))) do
-					workspace.ban.RemoteEvent:FireServer(v.Name)
+            if game.PlaceId == 1021229926 then
+                local hihi = string.split(string.sub(msg:lower(),6)," ")
+                for i,v in pairs(findplayer(hihi[1])) do
+                    local reason = ""
+                    if hihi[2] then
+                        for ii,vv in pairs(hihi) do
+							if ii ~= 1 then
+								reason = reason .. " " .. vv
+							end
+                        end
+                        workspace.ban.RemoteEvent:FireServer(v.Name,reason)
+                    else
+                        workspace.ban.RemoteEvent:FireServer(v.Name)
+                    end
 					number = number + 1
 					newtext("Banned " .. v.Name .. " from Bloxwatch HQ!",number)
 				end
@@ -1343,15 +1354,25 @@ plr.Chatted:Connect(function(msg)
 			end
 		end
 		if string.sub(msg:lower(),1,6) == prefix .. 'kick ' then
-			if game.PlaceId == 1021229926 then
-				for i,v in pairs(findplayer(string.sub(msg,7))) do
-					workspace.kick.RemoteEvent:FireServer(v.Name)
+            if game.PlaceId == 1021229926 then
+                local hihi = string.split(string.sub(msg:lower(),7)," ")
+				for i,v in pairs(findplayer(hihi[1])) do
+                    if hihi[2] then
+                        for ii,vv in pairs(hihi) do
+                            if ii ~= 1 then
+                                reason = reason .. " " .. vv
+                            end
+                        end
+                        workspace.kick.RemoteEvent:FireServer(v.Name,reason)
+                    else
+                        workspace.kick.RemoteEvent:FireServer(v.Name)
+                    end
 					number = number + 1
 					newtext("Kicked " .. v.Name .. " from Bloxwatch HQ!",number)
 				end
 			else
 				number = number + 1
-				newtext("Can't ban: the game you're playing isn't Bloxwatch HQ.",number)
+				newtext("Can't kick: the game you're playing isn't Bloxwatch HQ.",number)
 			end
 		end
 		if string.sub(msg:lower(),1,6) == prefix .. 'slock' or string.sub(msg:lower(),1,11) == prefix .. 'serverlock' then
@@ -2167,9 +2188,20 @@ Box.FocusLost:Connect(function(entered)
 			end
 		end
 		if string.sub(t:lower(),1,4) == 'ban ' then
+			local hihi = string.split(string.sub(t:lower(),5)," ")
 			if game.PlaceId == 1021229926 then
-				for i,v in pairs(findplayer(string.sub(t,5))) do
-					workspace.ban.RemoteEvent:FireServer(v.Name)
+				for i,v in pairs(findplayer(hihi[1])) do
+					if hihi[2] then
+						local reason = ""
+						for ii,vv in pairs(hihi) do
+							if ii ~= 1 then
+								reason = reason .. " " .. vv
+							end
+						end
+						workspace.ban.RemoteEvent:FireServer(v.Name,reason)
+					else
+						workspace.ban.RemoteEvent:FireServer(v.Name)
+					end
 					number = number + 1
 					newtext("Banned " .. v.Name .. " from Bloxwatch HQ!",number)
 				end
@@ -2179,15 +2211,26 @@ Box.FocusLost:Connect(function(entered)
 			end
 		end
 		if string.sub(t:lower(),1,5) == 'kick ' then
+			local hihi = string.split(string.sub(t:lower(),6)," ")
 			if game.PlaceId == 1021229926 then
-				for i,v in pairs(findplayer(string.sub(t,6))) do
-					workspace.kick.RemoteEvent:FireServer(v.Name)
+				for i,v in pairs(findplayer(hihi[1])) do
+					if hihi[2] then
+						local reason = ""
+						for ii,vv in pairs(hihi) do
+							if ii ~= 1 then
+								reason = reason .. " " .. vv
+							end
+						end
+						workspace.kick.RemoteEvent:FireServer(v.Name,reason)
+					else
+						workspace.kick.RemoteEvent:FireServer(v.Name)
+					end
 					number = number + 1
 					newtext("Kicked " .. v.Name .. " from Bloxwatch HQ!",number)
 				end
 			else
 				number = number + 1
-				newtext("Can't ban: the game you're playing isn't Bloxwatch HQ.",number)
+				newtext("Can't kick: the game you're playing isn't Bloxwatch HQ.",number)
 			end
 		end
 		if string.sub(t:lower(),1,5) == 'slock' or string.sub(t:lower(),1,10) == 'serverlock' then
